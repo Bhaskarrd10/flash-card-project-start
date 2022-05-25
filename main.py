@@ -1,6 +1,15 @@
 BACKGROUND_COLOR = "#B1DDC6"
 
 from tkinter import *
+import pandas
+import random
+
+data= pandas.read_csv("data/french_words.csv")
+to_learn = data.to_dict(orient="records")
+
+def next_card():
+    current_card = random.choice(to_learn)
+    current_card["French"]
 
 
 window = Tk()
@@ -17,11 +26,11 @@ canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)
 canvas.grid(row=0, column=0, columnspan=2)
 
 cross_image = PhotoImage(file="images/wrong.png")
-unkown_button = Button(image=cross_image)
+unkown_button = Button(image=cross_image, highlightthickness=0, command= next_card)
 unkown_button.grid(row=1, column=0)
 
 right_image = PhotoImage(file="images/right.png")
-known_button = Button(image=right_image)
+known_button = Button(image=right_image, highlightthickness=0, command= next_card)
 known_button.grid(row=1, column=1)
 
 
